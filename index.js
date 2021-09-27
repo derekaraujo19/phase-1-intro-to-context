@@ -54,20 +54,30 @@ function wagesEarnedOnDate(record, matchDate) {
   return hours * record.payPerHour;
 }
 
+
+// MANUAL, NON-REDUCE WAY:
 function allWagesFor(record) {
   var sum = 0;
   for (let i = 0; i < record.timeInEvents.length; i++) {
+    console.log(record.timeInEvents)
     var wagesPerDate = wagesEarnedOnDate(record, record.timeInEvents[i].date);
     sum += wagesPerDate;
   }
   return sum;
 }
 
-// TO REVISIT -> HOW TO DO allWagesFor USING REDUCE:
-// const timeInEvents = record.timeInEvents;
-// const allWagesFor = timeInEvents.reduce(wagesEarnedOnDate(sum, i){
-//   return sum += i.date;
-// }, 0)
+
+// function allWagesFor(record) {
+
+//   const timeInEvents = record.timeInEvents;
+//     console.log(timeInEvents);
+//   const datesPerEmployee = timeInEvents.map(employee => employee.date)
+//   let total = datesPerEmployee.reduce(function(sum, date) {
+//     sum += wagesEarnedOnDate(record, date);
+//     return sum;
+//   }, 0)
+//   return total;
+// }
 
 function calculatePayroll(records){
   var sum = 0;
